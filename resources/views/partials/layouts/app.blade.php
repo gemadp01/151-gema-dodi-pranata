@@ -10,7 +10,9 @@
 <body class="bg-slate-200">
 
     <header id="header">
-        {{-- @yield('header') --}}
+        <nav>
+            <h1>nanti disini navbar</h1>
+        </nav>
     </header>
 
     <main>
