@@ -8,29 +8,34 @@
             <h2 class="text-2xl font-semibold text-gray-700 text-center">Welcome back!</h2>
             <p class="text-xl text-gray-600 text-center">Sign in here</p>
 
-            <div class="mt-4 relative">
-                <img src="{{ asset('assets/svg/user-svgrepo-com.svg') }}" alt="username"
-                    class="w-5 absolute top-[18px] left-[18px]">
-                <input
-                    class="bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-600 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
-                    type="email" placeholder="Email address" />
-            </div>
-            <div class="mt-4 relative">
-                <img src="{{ asset('assets/svg/key-svgrepo-com.svg') }}" alt="username"
-                    class="w-5 absolute top-[18px] left-[18px]">
-                <input
-                    class="bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-600 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
-                    type="password" placeholder="Password" />
-            </div>
-            <div class="mt-8">
-                <button
-                    class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
-            </div>
+            {{-- Form --}}
+            <form action="" method="post">
+                <div class="mt-4 relative">
+                    <img src="{{ asset('assets/svg/user-svgrepo-com.svg') }}" alt="username"
+                        class="w-5 absolute top-[18px] left-[18px]">
+                    <input
+                        class="bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
+                        type="email" placeholder="Email address" />
+                </div>
+                <div class="mt-4 relative">
+                    <img src="{{ asset('assets/svg/key-svgrepo-com.svg') }}" alt="username"
+                        class="w-5 absolute top-[18px] left-[18px]">
+                    <input
+                        class="bg-gray-50 b text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
+                        type="password" placeholder="Password" />
+                </div>
+                <div class="mt-8">
+                    <button
+                        class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
+                </div>
+            </form>
+            {{-- End Form --}}
+
             <hr class="border-t border-gray-300 mt-6 mb-2">
             <div class="w-full text-center">
                 <span class="text-xs text-gray-500 ">
                     No account?
-                    <a href="#" class="text-blue-500">Sign up</a>
+                    <a href="{{ route('register') }}" class="text-blue-500">Sign up</a>
                 </span>
             </div>
 
