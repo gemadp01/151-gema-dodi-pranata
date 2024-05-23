@@ -10,10 +10,10 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/login', function () {
-    return view('login');
-})->name("login");
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'index'])->name("register.index");
+Route::post('/register', [App\Http\Controllers\RegisterController::class, 'store'])->name("register.store");
 
-Route::get('/register', function () {
-    return view('register');
-})->name("register");
+Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name("login.index");
+Route::post('/login', [App\Http\Controllers\LoginController::class, 'authenticate'])->name("login.auth");
+
+
