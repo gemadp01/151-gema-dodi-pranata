@@ -9,7 +9,7 @@
             <p class="text-xl text-gray-600 text-center">Sign up here</p>
 
             {{-- Form --}}
-            <form action="" method="post">
+            <form action="{{ route('register.store') }}" method="post">
                 <div class="mt-4 relative">
                     <img src="{{ asset('assets/svg/user-svgrepo-com.svg') }}" alt="username"
                         class="w-5 absolute top-[18px] left-[18px]">
@@ -43,7 +43,7 @@
             <div class="w-full text-center">
                 <span class="text-xs text-gray-500 ">
                     Already have an account?
-                    <a href="{{ route('login') }}" class="text-blue-500">Sign in</a>
+                    <a href="{{ route('login.index') }}" class="text-blue-500">Sign in</a>
                 </span>
             </div>
 
