@@ -24,6 +24,7 @@
                         class="bg-gray-50 b text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
                         type="password" placeholder="Password" />
                 </div>
+
                 <div class="mt-8">
                     <button
                         class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
