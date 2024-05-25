@@ -19,3 +19,11 @@ Route::post('/login', [App\Http\Controllers\LoginController::class, 'authenticat
 Route::get('/dashboard', function() {
     return view('dashboard');
 });
+
+Route::get('/dashboard/product', function() {
+    return view('dashboard');
+})->name('dashboard.product');
+
+Route::get('/dashboard/transaction', function() {
+    return view('dashboard');
+})->name('dashboard.transaction');
