@@ -13,11 +13,25 @@
 
         <!-- main content page -->
         <div class="w-full p-4">
+            {{-- dashboard page --}}
             @if ( Request::is('dashboard') )
             @include('partials.pages.dashboard.dashboard_page')
+
+            {{-- product page --}}
             @elseif ( Request::is('dashboard/product') )
-            @include('partials.pages.dashboard.product_page')
+            @include('partials.pages.dashboard.product.index')
+
+            {{-- product create --}}
+            @elseif ( Request::is('dashboard/product/create') )
+            @include('partials.pages.dashboard.product.create')
+
+            {{-- product show --}}
+            @elseif ( Request::is('dashboard/product/{product}') )
+            @include('partials.pages.dashboard.product.show')
+
+            {{-- transaction page --}}
             @elseif( Request::is('dashboard/transaction') )
+            @include('partials.pages.dashboard.transaction.transaction_page')
             @endif
         </div>
     </div>
@@ -26,36 +40,17 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
             const layout = {
-                profileOpen: false,
                 asideOpen: true,
-                toggleProfile() {
-                    this.profileOpen = !this.profileOpen;
-                    document.getElementById('profile-dropdown').style.display = this.profileOpen ? 'block' : 'none';
-                },
                 toggleAside() {
                     this.asideOpen = !this.asideOpen;
                     document.getElementById('aside').style.display = this.asideOpen ? 'block' : 'none';
                 },
-                closeProfile() {
-                    this.profileOpen = false;
-                    document.getElementById('profile-dropdown').style.display = 'none';
-                }
             };
-
-            document.getElementById('profile-toggle').addEventListener('click', (e) => {
-                layout.toggleProfile();
-                e.stopPropagation();
-            });
 
             document.getElementById('menu-toggle').addEventListener('click', () => {
                 layout.toggleAside();
             });
 
-            document.addEventListener('click', (event) => {
-                if (!document.getElementById('profile-dropdown').contains(event.target)) {
-                    layout.closeProfile();
-                }
-            });
         });
 </script>
 

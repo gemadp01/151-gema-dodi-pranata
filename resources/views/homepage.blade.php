@@ -5,19 +5,25 @@
 @include('partials.pages.homepage.header')
 
 <main class="flex-grow">
-    <div class="container mx-auto border border-red-500">
+    @if ( Request::is('/') )
 
-        <div class="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center my-8">
+    <div>
 
-            @for ($i = 1; $i
-            <= 20; $i++) <x-product.card name="Product Name" price="100.000" product_owner="Product Owner"
-                product_image="https://source.unsplash.com/600x400?product"
-                :profil_image="asset('assets/img/man.png')" />
-            @endfor
+        <div
+            class="grid grid-cols-1 gap-y-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center my-8">
+
+            @foreach ($products as $product)
+            <x-product.card :href="route('detail.product', $product)" :name="$product->name" :price="$product->price"
+                :stock="$product->stock" :image="asset('storage/products/' . $product->image)" />
+            @endforeach
 
         </div>
 
     </div>
+
+    @elseif ( Route::is('detail.product') )
+    @include('partials.pages.dashboard.product.show')
+    @endif
 </main>
 
 @include('partials.pages.homepage.footer')
