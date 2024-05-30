@@ -64,7 +64,7 @@
                     <li>
                         <a href="https://tailwindflex.com/" class="mt-4 text-sm text-gray-500" target="_blank"
                             target="_blank" rel="noopener noreferrer" aria-label="Tailwind Flex" title="TailwindFlex">
-                            TailwindFlex
+                            Tailwind Flex
                         </a>
                     </li>
                     <li>

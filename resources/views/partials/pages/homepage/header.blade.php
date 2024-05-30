@@ -57,23 +57,27 @@
 
             </button>
 
-            @if (Route::currentRouteName() != 'register.index' && Route::currentRouteName() != 'login.index')
+            {{-- @if (Route::currentRouteName() != 'register.index' && Route::currentRouteName() != 'login.index') --}}
+            @if(auth()->check())
+            {{-- button profile --}}
+            <x-button-profile.dropdown-profile />
+            @else
             <span class="border-r border-gray-300 rounded mx-7 my-3"></span>
 
             {{-- Sign up button --}}
             <a class="py-1.5 px-3 m-1 text-center border border-violet-700 rounded-md text-violet-700  hover:bg-gray-100 hidden lg:inline-block"
-                href="/register">
+                href="{{ route('register.index') }}">
                 Sign Up
             </a>
 
             {{-- Sign In Button --}}
-            <a href="/login"
+            <a href="{{ route('auth.index') }}"
                 class="py-1.5 px-3 m-1 text-center bg-violet-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 hidden lg:block">
                 Sign in
             </a>
-
+            @endif
+            {{-- @endif --}}
         </div>
-        @endif
 
     </nav>
 </header>

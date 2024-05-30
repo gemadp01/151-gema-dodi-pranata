@@ -1,5 +1,6 @@
 <aside class="flex w-72 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2" style="height: 90.5vh" id="aside">
-    <a href="/dashboard" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+    <a href="/dashboard" class="flex items-center space-x-1 rounded-md px-2 py-3 @if (Request::is('dashboard')) ? bg-gray-100 text-blue-600 : hover:bg-gray-100 hover:text-blue-600
+    @endif">
         <span class="text-2xl">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6">
@@ -12,8 +13,8 @@
         <span>Dashboard</span>
     </a>
 
-    <a href="/dashboard/product"
-        class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+    <a href="/dashboard/product" class="flex items-center space-x-1 rounded-md px-2 py-3 @if (Request::is('dashboard/product*')) ? bg-gray-100 text-blue-600 : hover:bg-gray-100 hover:text-blue-600
+        @endif">
         <span class="text-2xl">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6">
@@ -25,7 +26,8 @@
         <span>Products</span>
     </a>
 
-    <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+    <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 @if (Request::is('dashboard/transaction*')) ? bg-gray-100 text-blue-600 : hover:bg-gray-100 hover:text-blue-600
+    @endif">
         <span class="text-2xl">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6">
