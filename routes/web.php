@@ -16,4 +16,14 @@ Route::post('/register', [App\Http\Controllers\RegisterController::class, 'store
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'index'])->name("login.index");
 Route::post('/login', [App\Http\Controllers\LoginController::class, 'authenticate'])->name("login.auth");
 
+Route::get('/dashboard', function() {
+    return view('dashboard');
+});
 
+Route::get('/dashboard/product', function() {
+    return view('dashboard');
+})->name('dashboard.product');
+
+Route::get('/dashboard/transaction', function() {
+    return view('dashboard');
+})->name('dashboard.transaction');

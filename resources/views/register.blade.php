@@ -1,6 +1,6 @@
 @extends('partials.layouts.app')
 
-@section('content')
+@section('container')
 
 <div class="py-32">
     <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
@@ -10,12 +10,18 @@
 
             {{-- Form --}}
             <form action="{{ route('register.store') }}" method="post">
+                @csrf
                 <div class="mt-4 relative">
                     <img src="{{ asset('assets/svg/user-svgrepo-com.svg') }}" alt="username"
                         class="w-5 absolute top-[18px] left-[18px]">
                     <input
                         class="bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-600 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
-                        type="email" placeholder="Your name" />
+                        type="text" name="name" placeholder="Your name" required autofocus value="{{ old('name') }}" />
+                    @error('name')
+                    <div class="name">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 <div class="mt-4 relative">
@@ -23,14 +29,24 @@
                         class="w-5 absolute top-[18px] left-[18px]">
                     <input
                         class="bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-600 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
-                        type="email" placeholder="Email address" />
+                        type="email" name="email" placeholder="Email address" required value="{{ old('email') }}" />
+                    @error('email')
+                    <div class="email">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mt-4 relative">
                     <img src="{{ asset('assets/svg/key-svgrepo-com.svg') }}" alt="username"
                         class="w-5 absolute top-[18px] left-[18px]">
                     <input
                         class="bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-600 rounded-full py-4 pl-12 pr-5 block w-full appearance-none"
-                        type="password" placeholder="Password" />
+                        type="password" name="password" placeholder="Password" required />
+                    @error('password')
+                    <div class="password">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mt-8">
                     <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Create
@@ -43,7 +59,7 @@
             <div class="w-full text-center">
                 <span class="text-xs text-gray-500 ">
                     Already have an account?
-                    <a href="{{ route('login.index') }}" class="text-blue-500">Sign in</a>
+                    <a href="{{ route('auth.index') }}" class="text-blue-500">Sign in</a>
                 </span>
             </div>
 
