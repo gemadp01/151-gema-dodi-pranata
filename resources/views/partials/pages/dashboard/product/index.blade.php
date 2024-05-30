@@ -31,10 +31,24 @@
                     class="w-20 object-contain">
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
-                <button
-                    class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Edit</button>
-                <button
-                    class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Delete</button>
+                {{-- edit button --}}
+                <a href="{{ route('product.edit', $product->id) }}"
+                    class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">
+                    Edit
+                </a>
+
+                {{-- delete button --}}
+                @if (Auth::check() && Auth::user()->role_user === "admin")
+                <form action="{{ route('product.destroy', $product->id) }}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button type="submit"
+                        class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">
+                        Delete
+                    </button>
+                </form>
+                @endif
+
             </td>
         </tr>
         @endforeach

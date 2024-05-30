@@ -26,8 +26,12 @@
             @include('partials.pages.dashboard.product.create')
 
             {{-- product show --}}
-            @elseif ( Request::is('dashboard/product/{product}') )
-            @include('partials.pages.dashboard.product.show')
+            {{-- @elseif ( Request::is('dashboard/product/{product}') )
+            @include('partials.pages.dashboard.product.show') --}}
+
+            {{-- product edit --}}
+            @elseif ( Route::is('product.edit') )
+            @include('partials.pages.dashboard.product.edit')
 
             {{-- transaction page --}}
             @elseif( Request::is('dashboard/transaction') )
