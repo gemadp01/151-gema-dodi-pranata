@@ -21,8 +21,8 @@
         <tr>
             <td class="px-6 py-4 whitespace-nowrap">{{ $loop->iteration }}</td>
             <td class=" px-6 py-4 whitespace-nowrap">{{ $product->name }}</td>
-            <td class="px-6 py-4 whitespace-nowrap max-w-xs">
-                <p class="truncate">{{ $product->description }} ...</p>
+            <td class="px-6 py-4 whitespace-nowrap max-w-[10rem]">
+                <p class="truncate overflow-hidden text-ellipsis">{{ $product->description }}</p>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">{{ $product->stock }}</td>
             <td class="px-6 py-4 whitespace-nowrap">Rp. {{ $product->price }}</td>

@@ -46,7 +46,7 @@
         <div class="hidden lg:flex">
 
             {{-- Cart button --}}
-            <button id="cart-toggle" type="button"
+            <a href="{{ route('cart.index') }}" id="cart-toggle"
                 class="hidden lg:inline-block lg:ml-auto py-1.5 px-3 m-1 text-center rounded-md hover:bg-gray-100">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -55,14 +55,16 @@
                         d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                 </svg>
 
-            </button>
+            </a>
+
+            <span class="border-r border-gray-300 rounded mx-7 my-3"></span>
 
             {{-- @if (Route::currentRouteName() != 'register.index' && Route::currentRouteName() != 'login.index') --}}
             @if(auth()->check())
             {{-- button profile --}}
-            <x-button-profile.dropdown-profile />
+            <x-button-profile.dropdown-profile class="absolute right-10 2xl:right-96 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md
+            z-50" />
             @else
-            <span class="border-r border-gray-300 rounded mx-7 my-3"></span>
 
             {{-- Sign up button --}}
             <a class="py-1.5 px-3 m-1 text-center border border-violet-700 rounded-md text-violet-700  hover:bg-gray-100 hidden lg:inline-block"

@@ -1,6 +1,5 @@
 <!-- dropdown profile -->
-<div class="absolute right-2 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md z-50"
-    id="profile-dropdown" style="display: none;">
+<div {{ $attributes }} id="profile-dropdown" style="display: none;">
     <div class="flex items-center space-x-2 p-2">
         <img src="https://plchldr.co/i/40x40?bg=111111" alt="plchldr.co" class="h-9 w-9 rounded-full" />
         <div class="font-medium">

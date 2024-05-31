@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Cart;
+use App\Models\CartDetail;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -9,8 +11,10 @@ use Illuminate\Support\Facades\Route;
 
 // Homepage
 Route::get('/', function () {
-    $products = App\Models\Product::all();
-    return view('homepage', compact('products'));
+    $products = Product::all();
+    return view('homepage', [
+        'products' => $products,
+    ]);
 })->name('homepage');
 
 Route::get('/product/{product}', function (Product $product) {
@@ -34,6 +38,7 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::post('/logout', 'LoginController@logout')->name("logout")->middleware('auth');
     });
 
+    // Authenticated and Admin
     Route::middleware(['auth', 'role:admin'])->group(function() {
 
         Route::prefix('dashboard')->group(function () {
@@ -61,6 +66,15 @@ Route::namespace('App\Http\Controllers')->group(function() {
         });
 
     });
+
+
+    Route::name('cart.')->group(function () {
+        Route::get('cart', 'CartController@index')->name('index');
+        Route::post('cart/{product}', 'CartController@store')->name('store');
+        Route::patch('cart/{cartDetail}', 'CartController@update')->name('update');
+        Route::delete('cart/{cartDetail}', 'CartController@destroy')->name('destroy');
+    });
+
 });
 
 
