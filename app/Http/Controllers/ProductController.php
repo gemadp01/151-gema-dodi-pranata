@@ -36,4 +36,36 @@ class ProductController extends Controller
     public function show(Product $product) {
         return view("dashboard", compact('product'));
     }
+
+    public function edit(Product $product) {
+        return view("dashboard", compact('product'));
+    }
+
+    public function update(Product $product, ProductRequest $request) {
+        $validatedData = $request->validated();
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::disk('local')->delete('public/products/' . $product->image);
+            }
+
+            $file = $validatedData['image'];
+            $fileNameWithoutSpacing = str_replace(' ', '', $validatedData['name']);
+            $validatedData['image'] = time() . '_' . $fileNameWithoutSpacing . '.' . $file->getClientOriginalExtension();
+            Storage::disk('local')->put('public/products/' . $validatedData['image'], file_get_contents($file));
+        }
+
+
+
+        $product->update($validatedData);
+
+        return redirect()->route('product.index')->with("message", "Product updated Successfully");
+    }
+    public function destroy(Product $product) {
+        if($product->image) {
+            Storage::disk('local')->delete('public/products/' . $product->image);
+        }
+        $product->delete();
+        return redirect()->route('product.index')->with("message", "Product deleted Successfully");
+    }
 }
