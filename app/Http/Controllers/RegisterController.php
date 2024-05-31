@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\CartDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +29,11 @@ class RegisterController extends Controller
         // $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        // dd($validatedData);
-
         User::create($validatedData);
+
+        Cart::create([
+            'user_id' => User::latest()->first()->id
+        ]);
 
         // $request->session()->flash('success', 'Registration successfull! Please login');
 
