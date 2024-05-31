@@ -1,8 +1,17 @@
+@props([
+'classes' => 'absolute right-10 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md
+z-50'
+])
+
+@php
+$classAttribute = $attributes->get('class') ? $attributes->get('class') : $classes;
+@endphp
+
 <!-- button profile -->
 <div>
     <x-button-profile.button-profile-button />
 
-    <x-button-profile.button-profile-dropdown />
+    <x-button-profile.button-profile-dropdown {{ $attributes->merge(['class' => $classAttribute]) }}/>
 </div>
 
 <script>
