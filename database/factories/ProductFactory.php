@@ -20,7 +20,7 @@ class ProductFactory extends Factory
             'name' => 'Product ' . fake()->numberBetween(1, 100),
             'description' => fake()->text(),
             'price' => fake()->numberBetween(1000, 10000),
-            'image' => 'https://source.unsplash.com/600x400?product&random=' . fake()->numberBetween(1, 100),
+            'image' => '',
             'stock' => fake()->numberBetween(1, 100),
             'created_at' => now(),
             'updated_at' => now()

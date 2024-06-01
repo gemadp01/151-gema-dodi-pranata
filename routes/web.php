@@ -38,41 +38,44 @@ Route::namespace('App\Http\Controllers')->group(function() {
         Route::post('/logout', 'LoginController@logout')->name("logout")->middleware('auth');
     });
 
-    // Authenticated and Admin
-    Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::prefix('dashboard')->group(function () {
 
-        Route::prefix('dashboard')->group(function () {
-            // Dashboard
-            Route::get('/', function() {
-                return view('dashboard');
-            });
+        // Dashboard
+        Route::get('/', function() {
+            return view('dashboard');
+        })->middleware(['auth', 'role:admin']);
 
-            // Product
-            Route::name('product.')->group(function () {
+        // Product
+        Route::name('product.')->group(function () {
+            Route::middleware(['auth', 'role:admin'])->group(function() {
                 Route::get('product', 'ProductController@index')->name('index');
                 Route::get('product/create', 'ProductController@create')->name('create');
                 Route::post('product/store', 'ProductController@store')->name('store');
-                Route::get('product/{product}', 'ProductController@show')->name('show');
                 Route::get('product/{product}/edit', 'ProductController@edit')->name('edit');
                 Route::patch('product/{product}/update', 'ProductController@update')->name('update');
                 Route::delete('product/{product}/destroy', 'ProductController@destroy')->name('destroy');
             });
-
-            // Transaction
-            // Route::name('transaction.')->group(function () {
-            //     Route::get('transaction', 'TransactionController@index')->name('index');
-            // });
-
+            Route::get('product/{product}', 'ProductController@show')->name('show');
         });
+
+        // Transaction
+        // Route::name('transaction.')->group(function () {
+        //     Route::get('transaction', 'TransactionController@index')->name('index');
+        // });
 
     });
 
-
+    // Cart
     Route::name('cart.')->group(function () {
+
         Route::get('cart', 'CartController@index')->name('index');
-        Route::post('cart/{product}', 'CartController@store')->name('store');
-        Route::patch('cart/{cartDetail}', 'CartController@update')->name('update');
-        Route::delete('cart/{cartDetail}', 'CartController@destroy')->name('destroy');
+
+        Route::middleware('auth')->group(function() {
+            Route::post('cart/{product}', 'CartController@store')->name('store');
+            Route::patch('cart/{cartDetail}', 'CartController@update')->name('update');
+            Route::delete('cart/{cartDetail}', 'CartController@destroy')->name('destroy');
+        });
+
     });
 
 });
