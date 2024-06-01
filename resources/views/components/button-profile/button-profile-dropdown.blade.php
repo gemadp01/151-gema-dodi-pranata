@@ -7,11 +7,16 @@
         </div>
     </div>
 
-    {{-- <div class="flex flex-col space-y-3 p-2">
-        <a href="#" class="transition hover:text-blue-600">My Profile</a>
-        <a href="#" class="transition hover:text-blue-600">Edit Profile</a>
-        <a href="#" class="transition hover:text-blue-600">Settings</a>
-    </div> --}}
+    <div class="flex flex-col space-y-3 p-2">
+        @can('IsAdmin')
+        <a href="/dashboard" class="transition hover:text-blue-600">Dashboard</a>
+        <a href="/" class="transition hover:text-blue-600">Homepage</a>
+        @endcan
+        @can('IsUser')
+        <a href="#" class="transition hover:text-blue-600">Transactions</a>
+        @endcan
+        {{-- <a href="#" class="transition hover:text-blue-600">Settings</a> --}}
+    </div>
 
     <div class="p-2">
         <form action="{{ route('auth.logout') }}" method="post">

@@ -16,11 +16,12 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @php
                             $total_price = 0;
                             @endphp
 
-                            @if (auth()->check())
+                            @if($carts->count() != null)
                             @foreach ($carts as $cart => $value)
                             <tr>
                                 <td class="py-4">
@@ -97,7 +98,16 @@
                         <span class="font-semibold">Total</span>
                         <span class="font-semibold">Rp. {{ $total_price }}</span>
                     </div>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+
+                    @can('IsUser')
+                    <form action="" method="post">
+                        @csrf
+                        <button type="submit"
+                            class="bg-gray-900 text-white py-2 px-4 rounded-lg mt-4 w-full hover:bg-gray-800"
+                            @if($carts->count() < 1) disabled @endif>Checkout</button>
+                    </form>
+                    @endcan
+
                 </div>
             </div>
         </div>
