@@ -58,7 +58,10 @@
                     </div>
 
                     {{-- Add to Cart --}}
-                    <button class="w-full bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 ">
+                    <button type="submit"
+                        class="w-full bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 cursor-pointer"
+                        @if(auth()->check() != true || auth()->user()->role_user != 'user')
+                        disabled @endif>
                         Add to Cart
                     </button>
                 </div>

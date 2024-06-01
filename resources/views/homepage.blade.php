@@ -12,7 +12,8 @@
 
             @foreach ($products as $product)
             <x-product.card :href="route('detail.product', $product)" :name="$product->name" :price="$product->price"
-                :stock="$product->stock" :image="asset('storage/products/' . $product->image)" />
+                :stock="$product->stock"
+                :image="$product->image == null ? 'https://source.unsplash.com/600x400?product&random=' . $product->id : asset('storage/products/' . $product->image)" />
             @endforeach
 
         </div>
