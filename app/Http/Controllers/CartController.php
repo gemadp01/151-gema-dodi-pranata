@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
     public function index() {
-        if(auth()->check()) {
+        if(auth()->check() && auth()->user()->role_user == 'user') {
             $cart_id = Cart::where('user_id', auth()->user()->id)->first()->id;
             $carts = CartDetail::where('cart_id', $cart_id)->get();
         } else {
@@ -21,7 +21,8 @@ class CartController extends Controller
     }
 
     public function store(Product $product, Request $request) {
-        if(auth()->check()) {
+
+        if(auth()->user()->role_user == 'user') {
             $user_id = auth()->user()->id;
             $cart_id = Cart::where('user_id', $user_id)->first()->id;
             $product_id = $product->id;
@@ -52,9 +53,8 @@ class CartController extends Controller
             }
 
             return redirect()->back();
-        }else{
-            return redirect('/login');
         }
+
     }
 
     public function update(CartDetail $cartDetail, Request $request) {
